@@ -1,15 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './styles.css'
+import axios from 'axios'
 
 function Form() {
 
+    const [cidades, setCidades] = useState([])
+    const [estados, setEstados] = useState([])
+    const [paises, setPaises] = useState([])
+
     useEffect(() => {
-        fetch('https://servicodados.ibge.gov.br/api/v1/localidades/municipios/',{
-            method: 'GET'
-        }).then((response) => {
-            console.log(response.data)
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios').then((response) => {
+            setCidades(response.data)
+        }).catch(error => {
+            if(error.response !== undefined){
+                console.log('A api está com problemas!')
+            }else{
+                console.log('Error!')
+            }
         })
-    })
+    },[])
+
+    useEffect(() => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then((response) => {
+            setEstados(response.data)
+        }).catch(error => {
+            if(error.response !== undefined){
+                console.log('A api está com problemas!')
+            }else{
+                console.log('Error!')
+            }
+        })
+    },[])
+
+    useEffect(() => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/paises').then((response) => {
+            setPaises(response.data)
+        }).catch(error => {
+            if(error.response !== undefined){
+                console.log('A api está com problemas!')
+            }else{
+                console.log('Error!')
+            }
+        })
+    },[])
     return (
         <form>
             <h1>Formulário de Cadastro</h1>
@@ -23,23 +56,24 @@ function Form() {
 
             <p>Município</p>
             <select>
-                <option value="valor1">Valor 1</option>
-                <option value="valor2" selected>Valor 2</option>
-                <option value="valor3">Valor 3</option>
+                {cidades.map((item, index) => {
+                   return  <option value={index} key={index}>{item.nome}</option>
+                })}
             </select>
 
             <p>Estado</p>
             <select>
-                <option value="valor1">Valor 1</option>
-                <option value="valor2" selected>Valor 2</option>
-                <option value="valor3">Valor 3</option>
+                {estados.map((item, index) => {
+                    return <option value={index} key={index}>{item.nome}</option>
+                })}
+                
             </select>
 
             <p>País</p>
             <select>
-                <option value="valor1">Valor 1</option>
-                <option value="valor2" selected>Valor 2</option>
-                <option value="valor3">Valor 3</option>
+                {paises.map((item, index) => {
+                   return <option value={index} key={index}>{item.nome}</option>
+                })}
             </select>
 
             <button>Enviar</button>
