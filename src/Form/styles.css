@@ -21,10 +21,14 @@ form{
     flex-direction: column;
     gap: 30px;
     background-color: #dee4e4;
-    padding: 20px;
+    padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     height: 100%;
     border-radius: 0 19px 19px 0px;
+    @media (max-width: 769px) {
+        border-radius: 19px;
+        width: 90%;
+    }
 }
 
 select{
@@ -33,6 +37,9 @@ select{
 
 h1{
     font-weight: 800;
+    @media (max-width: 380px) {
+       font-size: 30px;
+    }
 }
 
 h5{
@@ -48,12 +55,15 @@ h5{
     outline: none;
     border-style: none;
     padding-left: 10px;
-
 }
 
 .state-country{
     display: flex;
     gap: 10px;
+    @media (max-width: 550px) {
+        flex-direction: column;
+        gap: 5px;
+    }
 }
 
 .form-fields{
@@ -82,18 +92,20 @@ button:active{
 
 .logo-container{
     background-color: #fff;
-    height: 507px;
     border-radius: 19px 0 0 19px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50%;
+    @media (max-width: 769px) {
+        display: none;
+    }
 }
 
 .elements{
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 p{
