@@ -5,45 +5,34 @@ import RecodeLogo from '../assets/recode-jr-logo.png'
 
 function Form() {
 
-    const [cidades, setCidades] = useState([])
-    const [estados, setEstados] = useState([])
-    const [paises, setPaises] = useState([])
+    const [cities, setCities] = useState([])
+    const [states, setStates] = useState([])
+    const [countries, setCountries] = useState([])
+
+    async function citiesList(){
+        await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios').then((response) => {
+            setCities(response.data)
+        })
+    }
+
+    async function statesList(){
+        await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then((response) => {
+            setStates(response.data)
+        })
+    }
+
+    async function countryList(){
+        await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/paises').then((response) => {
+            setCountries(response.data)
+        })
+    }
 
     useEffect(() => {
-        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios').then((response) => {
-            setCidades(response.data)
-        }).catch(error => {
-            if (error.response !== undefined) {
-                console.log('A api está com problemas!')
-            } else {
-                console.log('Error!')
-            }
-        })
+        citiesList();
+        statesList();
+        countryList();
     }, [])
 
-    useEffect(() => {
-        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then((response) => {
-            setEstados(response.data)
-        }).catch(error => {
-            if (error.response !== undefined) {
-                console.log('A api está com problemas!')
-            } else {
-                console.log('Error!')
-            }
-        })
-    }, [])
-
-    useEffect(() => {
-        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/paises').then((response) => {
-            setPaises(response.data)
-        }).catch(error => {
-            if (error.response !== undefined) {
-                console.log('A api está com problemas!')
-            } else {
-                console.log('Error!')
-            }
-        })
-    }, [])
     return (
         <div className="container">
             <div className="elements">
@@ -66,7 +55,7 @@ function Form() {
                             <div>
                                 <p>País</p>
                                 <select className="input">
-                                    {paises.map((item, index) => {
+                                    {countries.map((item, index) => {
                                         return <option value={index} key={index}>{item.nome}</option>
                                     })}
                                 </select>
@@ -75,8 +64,8 @@ function Form() {
                             <div>
                                 <p>Estado</p>
                                 <select className="input">
-                                    {estados.map((item, index) => {
-                                        return <option value={index} key={index}>{item.nome}</option>
+                                    {states.map((item, index) => {
+                                        return <option value={index} key={item.id}>{item.nome}</option>
                                     })}
 
                                 </select>
@@ -87,7 +76,8 @@ function Form() {
 
                         <p>Município</p>
                         <select className="input">
-                            {cidades.map((item, index) => {
+                            {cities.map((item, index) => {
+                                
                                 return <option value={index} key={index}>{item.nome}</option>
                             })}
                         </select>
