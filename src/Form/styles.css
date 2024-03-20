@@ -55,6 +55,7 @@ h5{
     outline: none;
     border-style: none;
     padding-left: 10px;
+    color: #000;
 }
 
 .state-country{
@@ -114,4 +115,8 @@ p{
 
 img{
     height: 50%;
+}
+
+option{
+    color: #000;
 }

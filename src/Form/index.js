@@ -8,9 +8,9 @@ function Form() {
     const navigate = useNavigate()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [city, setCity] = useState("Alta Floresta D'Oeste")
-    const [state, setState] = useState('Rondônia')
-    const [country, setCountry] = useState('Afeganistão')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [country, setCountry] = useState('')
     const [cities, setCities] = useState([])
     const [states, setStates] = useState([])
     const [countries, setCountries] = useState([])
@@ -92,6 +92,7 @@ function Form() {
                             <div>
                                 <p>País</p>
                                 <select className="input" value={country} onChange={handleChangeCountry} >
+                                <option value="" selected disabled hidden>Selecione</option>
                                     {countries.map((item) => {
                                         return <option value={item.nome} key={item.id}>{item.nome}</option>
                                     })}
@@ -101,6 +102,7 @@ function Form() {
                             <div>
                                 <p>Estado</p>
                                 <select className="input" value={state} onChange={handleChangeState}>
+                                <option value="" selected disabled hidden>Selecione</option>
                                     {states.map((item) => {
                                         return <option value={item.nome} key={item.id}>{item.nome}</option>
                                     })}
@@ -113,6 +115,7 @@ function Form() {
 
                         <p>Município</p>
                         <select className="input" value={city} onChange={handleChangeCity}>
+                        <option value="" selected disabled hidden>Selecione</option>
                             {cities.map((item) => {
                                 return <option value={item.nome} key={item.id}>{item.nome}</option>
                                 
