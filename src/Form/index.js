@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import './styles.css'
 import axios from 'axios'
 import RecodeLogo from '../assets/recode-jr-logo.png'
+import { useNavigate} from 'react-router-dom';
 
 function Form() {
+    const navigate = useNavigate()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
+    const [city, setCity] = useState("Alta Floresta D'Oeste")
+    const [state, setState] = useState('Rondônia')
+    const [country, setCountry] = useState('Afeganistão')
     const [cities, setCities] = useState([])
     const [states, setStates] = useState([])
     const [countries, setCountries] = useState([])
@@ -64,6 +66,7 @@ function Form() {
 
     function onSubmit(){
         localStorage.setItem('infoUser', JSON.stringify(infoUser))
+        navigate('/profile')
     }
     
 

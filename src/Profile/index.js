@@ -4,6 +4,8 @@ import './styles.css'
 import RecodeLogo from '../assets/recode-jr-logo.png'
 
 function Profile() {
+    var data = localStorage.getItem('infoUser')
+    data = JSON.parse(data)
     return (
         <div className="container">
             <div className="elements">
@@ -17,22 +19,22 @@ function Profile() {
                     </div>
                     <div className="form-fields">
                         <p>Nome</p>
-                        <input className="input" type="text" disabled></input>
+                        <input className="input" type="text" value={data.name || ''} disabled/>
 
                         <p>E-mail</p>
-                        <input className="input" type="text" disabled></input>
+                        <input className="input" type="text" value={data.email || ''} disabled/>
 
                         <p>Municipio</p>
-                        <input className="input" type="text" disabled></input>
+                        <input className="input" type="text" value={data.city || ''} disabled/>
                         <div className="state-country">
                             <div>
                                 <p>Estado</p>
-                                <input className="input" type="text" disabled></input>
+                                <input className="input" type="text" value={data.state || ''} disabled/>
                             </div>
 
                             <div>
                                 <p>País</p>
-                                <input className="input" type="text" disabled></input>
+                                <input className="input" type="text" value={data.country || ''} disabled />
                             </div>
                         </div>
                     </ div>
