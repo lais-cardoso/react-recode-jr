@@ -24,6 +24,7 @@ form{
     padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     height: 100%;
+    min-width: 100%;
     border-radius: 0 19px 19px 0px;
     @media (max-width: 769px) {
         border-radius: 19px;
@@ -60,6 +61,7 @@ h5{
 
 .state-country{
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     @media (max-width: 550px) {
         flex-direction: column;
@@ -70,6 +72,14 @@ h5{
 .form-fields{
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.state{
+    width: 100%;
+}
+.country{
+    width: 100%;
 }
 
 button{
@@ -107,15 +117,14 @@ button:active{
 .elements{
     display: flex;
     justify-content: center;
+    
 }
 
 p{
     margin-top: 15px;
 }
 
-img{
-    height: 50%;
-}
+
 
 option{
     color: #000;
