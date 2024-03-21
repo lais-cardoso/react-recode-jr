@@ -86,41 +86,44 @@ function Form() {
                         <input className="input" type="text" value={name} onChange={handleChangeName}></input>
 
                         <p>E-mail</p>
-                        <input className="input" type="text" value={email} onChange={handleChangeEmail}></input>
+                        <input className="input" type="e-mail" value={email} onChange={handleChangeEmail}></input>
 
                         <div className="state-country">
-                            <div>
+                            <div className="country">
                                 <p>País</p>
                                 <select className="input" value={country} onChange={handleChangeCountry} >
                                 <option value="" selected disabled hidden>Selecione</option>
                                     {countries.map((item) => {
-                                        return <option value={item.nome} key={item.id}>{item.nome}</option>
+                                        return (item.nome === 'Brasil') 
+                                        ?<option value={item.nome} key={item.id}>{item.nome}</option>:<alert>Selecione o Brasil</alert>
                                     })}
                                 </select>
                             </div>
 
-                            <div>
+                            <div className="state">
                                 <p>Estado</p>
-                                <select className="input" value={state} onChange={handleChangeState}>
+                                {(country === 'Brasil')
+                                ?<select className="input" value={state} onChange={handleChangeState}>
                                 <option value="" selected disabled hidden>Selecione</option>
                                     {states.map((item) => {
                                         return <option value={item.nome} key={item.id}>{item.nome}</option>
                                     })}
 
-                                </select>
+                                </select>:<select className="input" value={state} onChange={handleChangeState} disabled><option value="" selected disabled hidden>Selecione</option></select>}
                             </div>
 
 
                         </div>
 
                         <p>Município</p>
-                        <select className="input" value={city} onChange={handleChangeCity}>
+                        {(state !== "")
+                        ? <select className="input" value={city} onChange={handleChangeCity}>
                         <option value="" selected disabled hidden>Selecione</option>
                             {cities.map((item) => {
-                                return <option value={item.nome} key={item.id}>{item.nome}</option>
-                                
-                            })}
-                        </select>
+                                   return (state === item.microrregiao.mesorregiao.UF.nome)
+                                    ?<option value={item.nome} key={item.id}>{item.nome}</option>:''})}
+                        </select> : <select className="input" value={city} onChange={handleChangeCity} disabled><option value="" selected disabled hidden>Selecione</option></select>
+                        }
                     </div>
 
                     <button type="submit">Enviar</button>

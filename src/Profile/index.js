@@ -27,12 +27,12 @@ function Profile() {
                         <p>Municipio</p>
                         <input className="input" type="text" value={data.city || ''} disabled/>
                         <div className="state-country">
-                            <div>
+                            <div className="state">
                                 <p>Estado</p>
                                 <input className="input" type="text" value={data.state || ''} disabled/>
                             </div>
 
-                            <div>
+                            <div className="country">
                                 <p>País</p>
                                 <input className="input" type="text" value={data.country || ''} disabled />
                             </div>
