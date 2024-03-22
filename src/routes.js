@@ -4,8 +4,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Form from './Form'
-import Profile from './Profile'
+import Form from '../src/containers/Form'
+import Profile from '../src/containers/Profile'
 
 function RoutesRoute(){
     return(
