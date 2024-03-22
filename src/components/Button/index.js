@@ -6,7 +6,6 @@ function Button(props){
         //spread operator
         <button {...props}>{props.label}</button>
     )
-    
 }
 
 export default Button
